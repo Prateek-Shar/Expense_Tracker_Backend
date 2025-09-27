@@ -12,6 +12,7 @@ const PORT = 8080;
 
 
 app.use(cors({
+  origin : ["https://expense-tracker-backend-ibme.onrender.com" , "https://expense-tracker-frontend-p6nv.vercel.app"],
   credentials: true,
 }));
 
