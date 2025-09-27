@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 
 
-app.get("/api/test", async (req, res) => {
+app.get("/test", async (req, res) => {
   try {
     const definition = await Expense.find({
       $expr: {
