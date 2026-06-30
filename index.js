@@ -18,11 +18,20 @@ app.use(cors({
 
 app.use(express.json());
 
+app.listen(PORT, () => {
+  try {
+    connectDb(); 
+    console.log("DB connected successfully");
+  }
+  
+  catch(err) {
+    console.log("Error : " , err)
+  }
+});
+
 
 app.get("/", (req, res) => {
-  res.send("✅ Backend API is working!");
-  console.log(req.session)
-  console.log(req.sessionID)
+  console.log(`🚀 Backend running at http://localhost:${PORT}`);
 });
 
 
@@ -299,7 +308,4 @@ app.get("/IncomeByMonth", async (req, res) => {
 
 
 
-app.listen(PORT, () => {
-  connectDb(); // ✅ connect MongoDB here
-  console.log(`🚀 Backend running at http://localhost:${PORT}`);
-});
+
