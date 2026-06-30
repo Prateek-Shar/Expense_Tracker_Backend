@@ -12,21 +12,25 @@ const PORT = 8080;
 
 
 app.use(cors({
-  origin : ["http://localhost:5173"],
+  origin : "http://localhost:5173",
   credentials: true,
 }));
 
 app.use(express.json());
 
-app.listen(() => {
+
+app.listen(PORT , () => {
+
   try {
     connectDb(); 
     console.log("DB connected successfully");
+    console.log(`Server up and running on ${PORT}`)
   }
   
   catch(err) {
     console.log("Error : " , err)
   }
+
 });
 
 
