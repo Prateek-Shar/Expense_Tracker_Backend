@@ -3,8 +3,9 @@ import connectDb from "./db/db.js";
 import Expense from "./schema/expense.js";
 import Lend from "./schema/lend.js"
 import Wallet from "./schema/wallet.js";
-import User from "./schema/newUser.js"
+import Users from "./schema/newUser.js"
 import cors from "cors";
+import { message } from "antd";
 
 
 const app = express();
@@ -109,16 +110,16 @@ app.post("/newUser" , async (req , res) => {
   const {Username , Email , Password , date} = req.body 
   console.log("Request Body: " , req.body)
 
-  if ( !Username || !Email || !Password|| !date) {
-    return res.status(400).json({ error: "Missing required fields" });
+  if (!Username || !Email || !Password|| !date) {
+    return res.status(400).json({ message: "Missing required fields" });
   }
 
   try {
-    const NewUsers = await NewUser.create({ Username, Email, Password, date});
-    return res.status(201).json({ UserTable: NewUsers });
+    const User = await Users.create({ Username, Email, Password, date});
+    return res.status(201).json({ UserTable: User });
   } catch (err) {
     console.error("Server Error:", err);
-    return res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 
 })
