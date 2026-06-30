@@ -12,7 +12,7 @@ const PORT = 8080;
 
 
 app.use(cors({
-  origin : ["https://expense-tracker-backend-ibme.onrender.com" , "https://clearspend.vercel.app"],
+  origin : ["http://localhost:5173"],
   credentials: true,
 }));
 
@@ -83,7 +83,7 @@ app.get("/totalExpense", async (req, res) => {
 app.post("/authenticateLogin", async (req, res) => {
 
   if(!req.body.UserName || !req.body.password) {
-    return res.status(401).json({error : "Missing Fields" })
+    return res.status(401).json({message : "Missing Fields" })
   }
 
   const { UserName , password } = req.body;
@@ -97,7 +97,7 @@ app.post("/authenticateLogin", async (req, res) => {
   
   catch (error) {
     console.error("Authentication error:", error);
-    return res.status(500).json({ success: false, message: "Server error" });
+    return res.status(500).json({ success: false, message: "Internal Server error" });
   }
 
 });
